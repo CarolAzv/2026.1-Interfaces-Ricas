@@ -1,4 +1,4 @@
-function concatenando (lista : Array<string>) : string {
+function concatenando(lista : Array<string>) : string {
     let frase = '';
     lista.forEach((elemento) => {
         frase = frase + elemento + ' ';
