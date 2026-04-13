@@ -1,10 +1,10 @@
-interface RegistarPet{
+export interface RegistarPet{
     animal: string;
     nome: string;
     genero: string;
 }
 
-class cachorro implements RegistarPet{
+export class cachorro implements RegistarPet{
     animal: string;
     nome: string;
     genero: string;
@@ -16,7 +16,7 @@ class cachorro implements RegistarPet{
     }
 }
 
-class pet implements RegistarPet{
+export class pet implements RegistarPet{
     animal: string;
     nome: string;
     genero: string;
@@ -29,6 +29,3 @@ class pet implements RegistarPet{
 
 
 }
-
-console.log(new cachorro('Rex', 'Macho'));
-console.log(new pet('Papagaio', 'Apolo', 'Macho'));
