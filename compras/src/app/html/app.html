@@ -1,0 +1,81 @@
+<head>
+  <meta charset="utf-8" />
+  <title> Site De Compras</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+
+<header>
+  <div class="title">
+    <h1>Site De Compras</h1>
+  </div>
+
+  <div class="nav">
+    <!-- Navigation links -->
+  </div>
+</header>
+
+<main class="main">
+
+  <div class="content">
+
+    <div class="apresentacao">
+      <h1>Você está no {{ local() }}</h1>
+    </div>
+
+    <div class="content-principal">
+
+      <div id="principal-adicionar">
+        <form (submit)="onSalvarProduto($event)" id="form-adicionar">
+          <input name="nome" type="text" [value]="produtoEditando()?.nome || ''" placeholder="Digite o nome do produto" required />
+          <input name="quantidade" type="number" [value]="produtoEditando()?.quantidade || ''" placeholder="Digite a quantidade" required />
+          <div>
+            <span>Está em produção?</span>
+            <input id="em-producao" name="emProducao" type="checkbox" [checked]="produtoEditando()?.emProducao === 'Sim'" />
+            <label for="em-producao">Sim</label>
+          </div>
+          <button type="submit" class="botão">{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}</button>
+          <button type="button" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" class="botão">Cancelar</button>
+        </form>
+      </div>
+
+      <div class="divider"></div>
+
+      <div id="principal-listagem">
+        <span>Produtos Cadastrados</span>
+
+        <table id="tabela-produtos">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Quantidade</th>
+              <th>Em Produção</th>
+              <th>Alterar</th>
+              <th>Deletar</th>
+            </tr>
+          </thead>
+          
+          <tbody align="center">
+            <tr *ngFor="let produto of produtos()">
+              <td>{{ produto.nome }}</td>
+              <td>{{ produto.quantidade }}</td>
+              <td>{{ produto.emProducao }}</td>
+              <td><button (click)="onAlterarProduto(produto)" class="botão">Alterar</button></td>
+              <td><button (click)="onDeletarProduto(produto)" class="botão">Deletar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+  
+</main>
+
+<footer>
+  <p>&copy; 2026 Compras. All rights reserved.</p>
+</footer>
+
+<router-outlet />

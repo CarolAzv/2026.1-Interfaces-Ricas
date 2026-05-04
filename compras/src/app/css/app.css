@@ -1,0 +1,83 @@
+header{
+    background-color: rgb(235, 221, 204);
+    border-bottom: 3px solid #89CFF0;
+    padding: 15px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title h1{
+    font: 24px 'Arial', sans-serif;
+}
+
+footer{
+    background-color: rgb(235, 221, 204);
+    border-top: 3px solid #89CFF0;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* Main content */
+main{
+    margin-left: 5%;
+    margin-right: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.content{
+    align-items: center;
+}
+
+.divider{
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#form-adicionar{
+    border: 2px solid #89CFF0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#principal-listagem{
+    border: 2px solid #89CFF0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+#tabela-produtos{
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    border: black solid 2px;
+
+}
+
+.botão{
+    background-color: #89CFF0;
+    border: none;
+    padding: 4px;
+    color: white;
+    cursor: pointer;
+}
+
+.apresentacao{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+form{
+    margin-bottom: 5%;
+}
+
+footer{
+    margin-top: 5%;
+}
