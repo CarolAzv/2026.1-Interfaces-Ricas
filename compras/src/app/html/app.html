@@ -38,8 +38,8 @@
             <label for="em-producao">Sim</label>
           </div>
 
-          <button type="submit" class="botão">{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}</button>
-          <button type="button" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" class="botão">Cancelar</button>
+          <p-button type="submit" class="botão" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" severity="info"></p-button>
+          <p-button type="button" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" class="botão" label="Cancelar" severity="info"></p-button>
         </form>
       </div>
 
@@ -64,8 +64,8 @@
               <td>{{ produto.nome }}</td>
               <td>{{ produto.quantidade }}</td>
               <td>{{ produto.emProducao }}</td>
-              <td><button (click)="onAlterarProduto(produto)" class="botão">Alterar</button></td>
-              <td><button (click)="onDeletarProduto(produto)" class="botão">Deletar</button></td>
+              <td><p-button (click)="onAlterarProduto(produto)" class="botão" label="Alterar" severity="info"></p-button></td>
+              <td><p-button (click)="onDeletarProduto(produto)" class="botão" label="Deletar" severity="info"></p-button></td>
             </tr>
           </tbody>
         </table>

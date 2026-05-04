@@ -5,6 +5,7 @@ import { RouterOutlet } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ButtonModule } from 'primeng/button';
 
 interface Produto {
   nome: string;
@@ -15,7 +16,7 @@ interface Produto {
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, RouterOutlet, InputTextModule, InputNumberModule, CheckboxModule],
+  imports: [CommonModule, FormsModule, RouterOutlet, InputTextModule, InputNumberModule, CheckboxModule, ButtonModule],
   templateUrl: './html/app.html',
   styleUrl: './css/app.css'
 })

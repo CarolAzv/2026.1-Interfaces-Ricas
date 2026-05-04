@@ -62,10 +62,9 @@ main{
 }
 
 .botão{
-    background-color: #89CFF0;
+    color: #89CFF0;
     border: none;
     padding: 4px;
-    color: white;
     cursor: pointer;
 }
 
