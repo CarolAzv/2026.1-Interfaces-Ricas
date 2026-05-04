@@ -28,13 +28,16 @@
 
       <div id="principal-adicionar">
         <form (submit)="onSalvarProduto($event)" id="form-adicionar">
-          <input name="nome" type="text" [value]="produtoEditando()?.nome || ''" placeholder="Digite o nome do produto" required />
-          <input name="quantidade" type="number" [value]="produtoEditando()?.quantidade || ''" placeholder="Digite a quantidade" required />
-          <div>
-            <span>Está em produção?</span>
-            <input id="em-producao" name="emProducao" type="checkbox" [checked]="produtoEditando()?.emProducao === 'Sim'" />
+          <input pInputText name="nome" type="text" [value]="produtoEditando()?.nome || ''" autocomplete="off" placeholder="Nome do produto" />
+
+          <input pInputText name="estoque" type="number" mode="decimal"  [min]="0" [value]="produtoEditando()?.quantidade || ''" placeholder="Quantidade em estoque" required />
+
+          <div class="checkbox">
+            <span class="perguntaBox">Está em produção?</span>
+            <p-checkbox [(ngModel)]="emProducaoCheck" [binary]="true" id="em-producao" name="emProducao"></p-checkbox>
             <label for="em-producao">Sim</label>
           </div>
+
           <button type="submit" class="botão">{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}</button>
           <button type="button" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" class="botão">Cancelar</button>
         </form>

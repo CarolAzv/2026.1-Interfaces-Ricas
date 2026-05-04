@@ -76,6 +76,17 @@ main{
 
 form{
     margin-bottom: 5%;
+    padding: 1%;
+}
+
+.checkbox{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.perguntaBox{
+    padding-right: 2%;
 }
 
 footer{
