@@ -12,4 +12,4 @@ rodando projeto
 instalar
 * npm install primeng @primeuix/themes
 
-https://github.com/persapiens-classes/typescript-example?authuser=0
+https://github.com/iuricode/padroes-de-commits
