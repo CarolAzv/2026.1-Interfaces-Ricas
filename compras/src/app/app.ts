@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
+import { InputTextModule } from 'primeng/inputtext';
 
 interface Produto {
   nome: string;
@@ -11,7 +12,7 @@ interface Produto {
 @Component({
   standalone: true,
   selector: 'app-root',
-  imports: [CommonModule, RouterOutlet],
+  imports: [CommonModule, RouterOutlet, InputTextModule],
   templateUrl: './html/app.html',
   styleUrl: './css/app.css'
 })
