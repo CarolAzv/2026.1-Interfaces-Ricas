@@ -7,7 +7,7 @@
 </head>
 
 <header>
-  <div class="title">
+  <div class="font-[imperial_script] text-5xl font-medium text-black"> <!-- class="title" -->
     <h1>Site De Compras</h1>
   </div>
 
@@ -16,15 +16,15 @@
   </div>
 </header>
 
-<main class="main">
+<main class="main" >
 
   <div class="content">
 
-    <div class="apresentacao">
+    <div class="apresentacao" class="font-[playfair] text-xl mt-[2%] mb-[3%]">
       <h1>Você está no {{ local() }}</h1>
     </div>
 
-    <div class="content-principal">
+    <div class="content-principal" align="center">
 
       <div id="principal-adicionar">
         <form (submit)="onSalvarProduto($event)" id="form-adicionar">
@@ -38,17 +38,17 @@
             <label for="em-producao">Sim</label>
           </div>
 
-          <p-button type="submit" class="botão" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" severity="info"></p-button>
-          <p-button type="button" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" class="botão" label="Cancelar" severity="info"></p-button>
+          <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="!button"></p-button>
+          <p-button type="button" severity="info" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" label="Cancelar" severity="info"></p-button>
         </form>
       </div>
 
       <div class="divider"></div>
 
       <div id="principal-listagem">
-        <span>Produtos Cadastrados</span>
 
-        <table id="tabela-produtos">
+        <table id="tabela-produtos" class="table-fixed">
+          <caption class="caption-top">Produtos Cadastrados</caption>
           <thead>
             <tr>
               <th>Nome</th>
@@ -64,10 +64,10 @@
               <td>{{ produto.nome }}</td>
               <td>{{ produto.quantidade }}</td>
               <td>{{ produto.emProducao }}</td>
-              <td><p-button (click)="onAlterarProduto(produto)" class="botão" label="Alterar" severity="info"></p-button></td>
-              <td><p-button (click)="onDeletarProduto(produto)" class="botão" label="Deletar" severity="info"></p-button></td>
+              <td><p-button (click)="onAlterarProduto(produto)" label="Alterar" severity="info" iconPos="bottom"></p-button></td>
+              <td><p-button (click)="onDeletarProduto(produto)" label="Deletar" severity="info" iconPos="bottom"></p-button></td>
             </tr>
-          </tbody>
+          </tbody> 
         </table>
       </div>
 
