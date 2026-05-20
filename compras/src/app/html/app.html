@@ -28,10 +28,10 @@
 
       <div id="principal-adicionar">
         <form (submit)="onSalvarProduto($event)" id="form-adicionar">
-            <input pInputText type="text" [formField]="produtoForm.nome"
+            <input type="text" [formField]="produtoForm.nome"
               autocomplete="off" placeholder="Nome do produto" />
 
-            <input pInputText type="number" [formField]="produtoForm.quantidade"
+            <input type="number" [formField]="produtoForm.quantidade"
               placeholder="Quantidade em estoque" />
 
           <div class="checkbox">
