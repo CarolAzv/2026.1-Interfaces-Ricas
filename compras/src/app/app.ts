@@ -28,11 +28,13 @@ interface Produto {
   styleUrl: './css/app.css'
 })
 
+
 export class App {
   protected readonly local = signal('Menu Principal');
   protected readonly produtos = signal<Produto[]>([]);
   protected readonly produtoEditando = signal<Produto | null>(null);
   protected readonly produtoForm = produtoForm;
+
 
   protected onSalvarProduto(event: Event) {
     event.preventDefault();
@@ -70,6 +72,7 @@ export class App {
     this.produtoForm.emProducao().value.set(false);
   }
 
+
   protected onAlterarProduto(produto: Produto) {
     this.produtoEditando.set(produto);
     // popular produtoForm com os valores do produto selecionado
@@ -77,6 +80,7 @@ export class App {
     this.produtoForm.quantidade().value.set(produto.quantidade);
     this.produtoForm.emProducao().value.set(produto.emProducao === 'Sim');
   }
+
 
   protected onCancelarEdicao() {
     this.produtoEditando.set(null);
@@ -86,6 +90,7 @@ export class App {
     this.produtoForm.emProducao().value.set(false);
   }
 
+  
   protected onDeletarProduto(produto: Produto) {
     this.produtos.update((lista) => lista.filter(p => p !== produto));
   }
