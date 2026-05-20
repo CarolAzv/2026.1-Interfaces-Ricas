@@ -8,6 +8,7 @@
     "vitest": "^4.1.2"
   },
   "scripts": {
+    "start": "npm --prefix compras start",
     "test": "vitest"
   },
   "dependencies": {

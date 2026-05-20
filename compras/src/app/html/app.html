@@ -28,13 +28,15 @@
 
       <div id="principal-adicionar">
         <form (submit)="onSalvarProduto($event)" id="form-adicionar">
-          <input pInputText name="nome" type="text" [value]="produtoEditando()?.nome || ''" autocomplete="off" placeholder="Nome do produto" />
+            <input pInputText type="text" [formField]="produtoForm.nome"
+              autocomplete="off" placeholder="Nome do produto" />
 
-          <input pInputText name="estoque" type="number" mode="decimal"  [min]="0" [value]="produtoEditando()?.quantidade || ''" placeholder="Quantidade em estoque" required />
+            <input pInputText type="number" [formField]="produtoForm.quantidade"
+              placeholder="Quantidade em estoque" />
 
           <div class="checkbox">
             <span class="perguntaBox">Está em produção?</span>
-            <p-checkbox [(ngModel)]="emProducaoCheck" [binary]="true" id="em-producao" name="emProducao"></p-checkbox>
+            <input id="em-producao" type="checkbox" [formField]="produtoForm.emProducao" />
             <label for="em-producao">Sim</label>
           </div>
 
