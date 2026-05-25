@@ -1,86 +1,87 @@
-<head>
-  <meta charset="utf-8" />
-  <title> Site De Compras</title>
-  <base href="/" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-</head>
+<router-outlet>
+  <head>
+    <meta charset="utf-8" />
+    <title> Site De Compras</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
 
-<header>
-  <div class="font-[imperial_script] text-5xl font-medium text-black"> <!-- class="title" -->
-    <h1>Site De Compras</h1>
-  </div>
-
-  <div class="nav">
-    <!-- Navigation links -->
-  </div>
-</header>
-
-<main class="main" >
-
-  <div class="content">
-
-    <div class="apresentacao" class="font-[playfair] text-xl mt-[2%] mb-[3%]">
-      <h1>Você está no {{ local() }}</h1>
+  <header>
+    <div class="font-[imperial_script] text-5xl font-medium text-black"> <!-- class="title" -->
+      <h1>Site De Compras</h1>
     </div>
 
-    <div class="content-principal" align="center">
+    <div class="nav">
+      <!-- Navigation links -->
+    </div>
+  </header>
 
-      <div id="principal-adicionar">
-        <form (submit)="onSalvarProduto($event)" id="form-adicionar">
-            <input type="text" [formField]="produtoForm.nome"
-              autocomplete="off" placeholder="Nome do produto" />
+  <main class="main" >
 
-            <input type="number" [formField]="produtoForm.quantidade"
-              placeholder="Quantidade em estoque" />
+    <div class="content">
 
-          <div class="checkbox">
-            <span class="perguntaBox">Está em produção?</span>
-            <input id="em-producao" type="checkbox" [formField]="produtoForm.emProducao" />
-            <label for="em-producao">Sim</label>
-          </div>
-
-          <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="!button"></p-button>
-          <p-button type="button" severity="info" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" label="Cancelar" severity="info"></p-button>
-        </form>
+      <div class="apresentacao" class="font-[playfair] text-xl mt-[2%] mb-[3%]">
+        <h1>Você está no {{ local() }}</h1>
       </div>
 
-      <div class="divider"></div>
+      <div class="content-principal" align="center">
 
-      <div id="principal-listagem">
+        <div id="principal-adicionar">
+          <form (submit)="onSalvarProduto($event)" id="form-adicionar">
+              <input type="text" [formField]="produtoForm.nome"
+                autocomplete="off" placeholder="Nome do produto" />
 
-        <table id="tabela-produtos" class="table-fixed">
-          <caption class="caption-top">Produtos Cadastrados</caption>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Quantidade</th>
-              <th>Em Produção</th>
-              <th>Alterar</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-          
-          <tbody align="center">
-            <tr *ngFor="let produto of produtos()">
-              <td>{{ produto.nome }}</td>
-              <td>{{ produto.quantidade }}</td>
-              <td>{{ produto.emProducao }}</td>
-              <td><p-button (click)="onAlterarProduto(produto)" label="Alterar" severity="info" iconPos="bottom"></p-button></td>
-              <td><p-button (click)="onDeletarProduto(produto)" label="Deletar" severity="info" iconPos="bottom"></p-button></td>
-            </tr>
-          </tbody> 
-        </table>
+              <input type="number" [formField]="produtoForm.quantidade"
+                placeholder="Quantidade em estoque" />
+
+            <div class="checkbox">
+              <span class="perguntaBox">Está em produção?</span>
+              <input id="em-producao" type="checkbox" [formField]="produtoForm.emProducao" />
+              <label for="em-producao">Sim</label>
+            </div>
+
+            <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="!button"></p-button>
+            <p-button type="button" severity="info" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" label="Cancelar" severity="info"></p-button>
+          </form>
+        </div>
+
+        <div class="divider"></div>
+
+        <div id="principal-listagem">
+
+          <table id="tabela-produtos" class="table-fixed">
+            <caption class="caption-top">Produtos Cadastrados</caption>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Em Produção</th>
+                <th>Alterar</th>
+                <th>Deletar</th>
+              </tr>
+            </thead>
+            
+            <tbody align="center">
+              <tr *ngFor="let produto of produtos()">
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.quantidade }}</td>
+                <td>{{ produto.emProducao }}</td>
+                <td><p-button (click)="onAlterarProduto(produto)" label="Alterar" severity="info" iconPos="bottom"></p-button></td>
+                <td><p-button (click)="onDeletarProduto(produto)" label="Deletar" severity="info" iconPos="bottom"></p-button></td>
+              </tr>
+            </tbody> 
+          </table>
+        </div>
+
       </div>
 
     </div>
+    
+  </main>
 
-  </div>
-  
-</main>
-
-<footer>
-  <p>&copy; 2026 Compras. All rights reserved.</p>
-</footer>
+  <footer>
+    <p>&copy; 2026 Compras. All rights reserved.</p>
+  </footer>
 
 <router-outlet />

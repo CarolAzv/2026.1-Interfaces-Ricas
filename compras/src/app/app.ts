@@ -37,6 +37,7 @@ export class App {
 
 
   protected onSalvarProduto(event: Event) {
+    this.produtoForm().invalid()
     event.preventDefault();
 
     // ler valores diretamente do produtoForm (Signal Forms)
