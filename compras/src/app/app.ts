@@ -25,6 +25,7 @@ interface Produto {
   templateUrl: './html/app.html',
   styleUrl: './css/app.css'
 })
+
 export class App {
   protected readonly local = signal('Menu Principal');
   protected readonly produtos = signal<Produto[]>([]);
@@ -88,9 +89,9 @@ export class App {
   produtoModel = signal({
     nome: '',
     quantidade: '',
-
   });
-
 
   produtoForm = form(this.produtoModel);
 }
+
+export class ButtonIconsDemo{}
