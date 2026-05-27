@@ -1,21 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Imperial+Script&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&display=swap");
 @import "tailwindcss";
+@import "tailwindcss-primeui";
 
 @theme {
     --color-azul: #89CFF0;
-    --color-marrom: ##ebddcc;
+    --color-marrom: #ebddcc;
+    --color-offwhite: #fcf9f9;
     --font-imperial_script: "Imperial Script", sans-serif;
     --font-playfair: "Playfair", sans-serif; 
 }
 
-header{
-    background-color: rgb(235, 221, 204);
-    border-bottom: 3px solid #89CFF0;
-    padding: 15px;
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+@layer components {
+    .button {
+        color: var(--color-azul);
+        /*hover: var(--color-marrom);*/
+        padding: --spacing(4);
+    }
+
+    .header{
+        background-color: var(--color-marrom);
+        border-bottom: 3px solid var(--color-azul);
+        padding: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+  .form{
+        margin-bottom: 5%;
+        padding: 1%;
+        background: var(--color-offwhite);
+    }
 }
 
 footer{
@@ -65,25 +81,6 @@ main{
     padding: 10px;
     border: black solid 2px;
 
-}
-
-@layer components {
-  .buttom {
-    background-color: var(--color-azul);
-    color: var(--color-azul);
-    padding: --spacing(4);
-  }
-}
-
-.botão{
-    color: #89CFF0;
-    border: none;
-    padding: 4px;
-}
-
-form{
-    margin-bottom: 5%;
-    padding: 1%;
 }
 
 .checkbox{

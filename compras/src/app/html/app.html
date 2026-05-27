@@ -6,7 +6,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
 </head>
 
-<header>
+<header class="header">
   <div class="font-[imperial_script] text-5xl font-medium text-black"> <!-- class="title" -->
     <h1>Site De Compras</h1>
   </div>
@@ -20,26 +20,28 @@
 
   <div class="content">
 
-    <div class="apresentacao" class="font-[playfair] text-xl mt-[2%] mb-[3%]">
+    <div class="apresentacao font-[playfair] text-xl mt-[2%] mb-[3%]">
       <h1>Você está no {{ local() }}</h1>
     </div>
 
     <div class="content-principal" align="center">
 
       <div id="principal-adicionar">
-        <form (submit)="onSalvarProduto($event)" id="form-adicionar">
-          <input pInputText name="nome" type="text" [value]="produtoEditando()?.nome || ''" autocomplete="off" placeholder="Nome do produto" />
+        <form (submit)="SalvarProduto($event)" id="form-adicionar" class="form">
+          <input pInputText id="nome" type="text" [formField]="ProdutoForm.nome" autocomplete="off" placeholder="Nome do produto" />
 
-          <input pInputText name="estoque" type="number" mode="decimal"  [min]="0" [value]="produtoEditando()?.quantidade || ''" placeholder="Quantidade em estoque" required />
+          <input pInputText id="estoque" type="number" [formField]="ProdutoForm.quantidade" placeholder="Quantidade em estoque" />
 
           <div class="checkbox">
             <span class="perguntaBox">Está em produção?</span>
-            <p-checkbox [(ngModel)]="emProducaoCheck" [binary]="true" id="em-producao" name="emProducao"></p-checkbox>
-            <label for="em-producao">Sim</label>
+            <p-checkbox [binary]="true" id="emProducao" [formField]="ProdutoForm.emProducao"></p-checkbox>
+            <label for="emProducao">Sim</label>
           </div>
 
-          <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="!button"></p-button>
-          <p-button type="button" severity="info" *ngIf="produtoEditando()" (click)="onCancelarEdicao()" label="Cancelar" severity="info"></p-button>
+          <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="button" icon="pi pi-check" iconPos="right"></p-button>
+          @if (produtoEditando()) {
+            <p-button type="button" severity="info" (click)="CancelarEdicao()" label="Cancelar" class="button"></p-button>
+          }
         </form>
       </div>
 
@@ -58,15 +60,17 @@
               <th>Deletar</th>
             </tr>
           </thead>
-          
+            
           <tbody align="center">
-            <tr *ngFor="let produto of produtos()">
-              <td>{{ produto.nome }}</td>
-              <td>{{ produto.quantidade }}</td>
-              <td>{{ produto.emProducao }}</td>
-              <td><p-button (click)="onAlterarProduto(produto)" label="Alterar" severity="info" iconPos="bottom"></p-button></td>
-              <td><p-button (click)="onDeletarProduto(produto)" label="Deletar" severity="info" iconPos="bottom"></p-button></td>
-            </tr>
+            @for (produto of produtos(); track produto.nome) {
+              <tr>
+                <td>{{ produto.nome }}</td>
+                <td>{{ produto.quantidade }}</td>
+                <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
+                <td><p-button (click)="AlterarProduto(produto)" label="Alterar" class="button"></p-button></td>
+                <td><p-button (click)="DeletarProduto(produto)" label="Deletar" class="button"></p-button></td>
+              </tr>
+            }
           </tbody> 
         </table>
       </div>
@@ -74,11 +78,10 @@
     </div>
 
   </div>
-  
+    
 </main>
 
 <footer>
   <p>&copy; 2026 Compras. All rights reserved.</p>
 </footer>
-
-<router-outlet />
+<router-outlet/>
