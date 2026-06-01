@@ -1,4 +1,4 @@
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, Input, signal, Signal, WritableSignal } from '@angular/core';
 import { form, required, min, FormField } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -15,7 +15,7 @@ import { ProdutoData, ProdutoModel } from '../../app.form';
   styleUrl: './incluir.css',
 })
 export class Incluir {
-  @Input() produtos!: Signal<ProdutoData[]>;
+  @Input() produtos!: WritableSignal<ProdutoData[]>;
 
   protected readonly ProdutoModel = signal<ProdutoData>({ ...ProdutoModel });
   protected readonly ProdutoForm = form(this.ProdutoModel, (produto) => {
@@ -36,7 +36,7 @@ export class Incluir {
         this.produtos().map((item) => item === produtoEditando ? produto : item)
       );
     } else {
-      this.produtos.update((lista) => [...lista, produto]);
+      this.produtos.update((lista: ProdutoData[]) => [...lista, produto]);
     }
 
     this.CancelarEdicao();
@@ -45,6 +45,6 @@ export class Incluir {
   CancelarEdicao() {
     this.produtoEditando.set(null);
     this.ProdutoModel.set({ ...ProdutoModel });
-    this.ProdutoForm().reset;
+    this.ProdutoForm().reset();
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, Input, signal, Signal, WritableSignal } from '@angular/core';
 import { form, required, min } from '@angular/forms/signals';
 import { ButtonModule } from 'primeng/button';
 
@@ -18,7 +18,7 @@ import { Deletar } from '../deletar/deletar';
   styleUrl: './listar.css',
 })
 export class Listar {
-  @Input() produtos!: Signal<ProdutoData[]>;
+  @Input() produtos!: WritableSignal<ProdutoData[]>;
   protected readonly produtoEditando = signal<ProdutoData | null>(null);
   protected readonly ProdutoModel = signal<ProdutoData>({ ...ProdutoModel });
   protected readonly ProdutoForm = form(this.ProdutoModel, (produto) => {
@@ -32,8 +32,11 @@ export class Listar {
   }
 
   DeletarProduto(produto: ProdutoData) {
-    this.produtoEditando.set(produto);
-    this.produtos.update((lista) => lista.filter((item) => item !== produto));
+    this.produtos.update((lista: ProdutoData[]) => lista.filter((item: ProdutoData) => item !== produto));
+    
+    if (this.produtoEditando() === produto) {
+      this.CancelarEdicao();
+    }
   }
 
   CancelarEdicao() {
