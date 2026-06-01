@@ -16,8 +16,8 @@
         <td>{{ produto.nome }}</td>
         <td>{{ produto.quantidade }}</td>
         <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
-        <td><p-button (click)="AlterarProduto(produto)" label="Alterar" class="button"></p-button></td>
-        <td><p-button (click)="DeletarProduto(produto)" label="Deletar" class="button"></p-button></td>
+        <td><app-alterar [produto]="produto" (alterar)="AlterarProduto($event)"></app-alterar></td>
+        <td><app-deletar [produto]="produto" (deletar)="DeletarProduto($event)"></app-deletar></td>
         </tr>
     }
     </tbody> 

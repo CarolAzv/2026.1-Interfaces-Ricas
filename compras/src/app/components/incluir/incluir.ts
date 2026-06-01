@@ -8,6 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ProdutoData, ProdutoModel } from '../../app.form';
 
 @Component({
+  standalone: true,
   selector: 'app-incluir',
   imports: [FormField, FormsModule, CheckboxModule, ButtonModule, InputTextModule],
   templateUrl: './incluir.html',

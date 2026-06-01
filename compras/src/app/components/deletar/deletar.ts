@@ -4,16 +4,16 @@ import { ProdutoData } from '../../app.form';
 
 @Component({
   standalone: true,
-  selector: 'app-alterar',
+  selector: 'app-deletar',
   imports: [ButtonModule],
-  templateUrl: './alterar.html',
-  styleUrl: './alterar.css',
+  templateUrl: './deletar.html',
+  styleUrl: './deletar.css',
 })
-export class Alterar {
+export class Deletar {
   @Input() produto!: ProdutoData;
-  @Output() alterar = new EventEmitter<ProdutoData>();
+  @Output() deletar = new EventEmitter<ProdutoData>();
 
-  AlterarProduto() {
-    this.alterar.emit(this.produto);
+  DeletarProduto() {
+    this.deletar.emit(this.produto);
   }
 }
