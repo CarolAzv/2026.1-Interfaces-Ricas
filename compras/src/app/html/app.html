@@ -26,53 +26,14 @@
 
     <div class="content-principal" align="center">
 
-      <div id="principal-adicionar">
-        <form (submit)="SalvarProduto($event)" id="form-adicionar" class="form">
-          <input pInputText id="nome" type="text" [formField]="ProdutoForm.nome" autocomplete="off" placeholder="Nome do produto" />
-
-          <input pInputText id="estoque" type="number" [formField]="ProdutoForm.quantidade" placeholder="Quantidade em estoque" />
-
-          <div class="checkbox">
-            <span class="perguntaBox">Está em produção?</span>
-            <p-checkbox [binary]="true" id="emProducao" [formField]="ProdutoForm.emProducao"></p-checkbox>
-            <label for="emProducao">Sim</label>
-          </div>
-
-          <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="button" icon="pi pi-check" iconPos="right"></p-button>
-          @if (produtoEditando()) {
-            <p-button type="button" severity="info" (click)="CancelarEdicao()" label="Cancelar" class="button"></p-button>
-          }
-        </form>
-      </div>
+      <app-incluir></app-incluir>
 
       <div class="divider"></div>
 
       <div id="principal-listagem">
 
-        <table id="tabela-produtos" class="table-fixed">
-          <caption class="caption-top">Produtos Cadastrados</caption>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Quantidade</th>
-              <th>Em Produção</th>
-              <th>Alterar</th>
-              <th>Deletar</th>
-            </tr>
-          </thead>
-            
-          <tbody align="center">
-            @for (produto of produtos(); track produto.nome) {
-              <tr>
-                <td>{{ produto.nome }}</td>
-                <td>{{ produto.quantidade }}</td>
-                <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
-                <td><p-button (click)="AlterarProduto(produto)" label="Alterar" class="button"></p-button></td>
-                <td><p-button (click)="DeletarProduto(produto)" label="Deletar" class="button"></p-button></td>
-              </tr>
-            }
-          </tbody> 
-        </table>
+        <app-listar></app-listar>
+
       </div>
 
     </div>

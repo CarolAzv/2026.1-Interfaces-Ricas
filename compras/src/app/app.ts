@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { form, required, min, FormField } from '@angular/forms/signals';
 
 import { ProdutoData, ProdutoModel } from './app.form';
+import { Listar } from './components/listar/listar';
+import { Incluir } from './components/incluir/incluir';
 
 
 @Component({
@@ -17,6 +19,8 @@ import { ProdutoData, ProdutoModel } from './app.form';
     CheckboxModule,
     ButtonModule,
     FormsModule,
+    Listar,
+    Incluir,
   ],
   templateUrl: './html/app.html',
   styleUrl: './css/app.css',
@@ -32,44 +36,11 @@ export class App {
     min(produto.quantidade, 0, { message: 'A quantidade não pode ser negativa' });
   });
 
-  SalvarProduto(event: Event) {
-    event.preventDefault();
-    if (!this.ProdutoForm().valid) return;
-
-    const produto: ProdutoData = { ...this.ProdutoModel() };
-    const produtoEditando = this.produtoEditando();
-
-    if (produtoEditando) {
-      this.produtos.set(
-        this.produtos().map((item) => item === produtoEditando ? produto : item)
-      );
-    } else {
-      this.produtos.update((lista) => [...lista, produto]);
-    }
-
-    this.CancelarEdicao();
-  }
-
-  AlterarProduto(produto: ProdutoData) {
-    this.produtoEditando.set(produto);
-    this.ProdutoModel.set({
-      nome: produto.nome,
-      quantidade: produto.quantidade,
-      emProducao: produto.emProducao,
-    });
-  }
-
   DeletarProduto(produto: ProdutoData) {
     this.produtos.set(this.produtos().filter((item) => item !== produto));
 
     if (this.produtoEditando() === produto) {
-      this.CancelarEdicao();
+      this.produtoEditando.set(null);
     }
-  }
-
-  CancelarEdicao() {
-    this.produtoEditando.set(null);
-    this.ProdutoModel.set({ ...ProdutoModel });
-    this.ProdutoForm().reset;
   }
 }
