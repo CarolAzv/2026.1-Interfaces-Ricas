@@ -16,9 +16,13 @@
         <td>{{ produto.nome }}</td>
         <td>{{ produto.quantidade }}</td>
         <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
-        <td><app-alterar [produto]="produto" (alterar)="AlterarProduto($event)"></app-alterar></td>
-        <td><app-deletar [produto]="produto" (deletar)="DeletarProduto($event)"></app-deletar></td>
-        </tr>
+        <td>
+           <app-alterar [produto]="produto" (alterar)="AlterarProduto($event)"></app-alterar>
+        </td>
+        <td>
+            <app-deletar [produto]="produto" (deletar)="DeletarProduto($event)"></app-deletar>
+        </td>
+      </tr>
     }
     </tbody> 
 </table>

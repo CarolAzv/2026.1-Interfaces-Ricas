@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, Input, signal, Signal } from '@angular/core';
 import { form, required, min, FormField } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -15,13 +15,14 @@ import { ProdutoData, ProdutoModel } from '../../app.form';
   styleUrl: './incluir.css',
 })
 export class Incluir {
+  @Input() produtos!: Signal<ProdutoData[]>;
+
   protected readonly ProdutoModel = signal<ProdutoData>({ ...ProdutoModel });
   protected readonly ProdutoForm = form(this.ProdutoModel, (produto) => {
     required(produto.nome, { message: 'Um nome é necessário' });
     min(produto.quantidade, 0, { message: 'A quantidade não pode ser negativa' });
   });
   protected readonly produtoEditando = signal<ProdutoData | null>(null);
-  protected readonly produtos = signal<ProdutoData[]>([]);
 
   SalvarProduto(event: Event) {
     event.preventDefault();

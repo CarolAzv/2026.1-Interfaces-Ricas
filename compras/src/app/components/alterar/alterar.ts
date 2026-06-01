@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ProdutoData } from '../../app.form';
 
@@ -10,10 +10,10 @@ import { ProdutoData } from '../../app.form';
   styleUrl: './alterar.css',
 })
 export class Alterar {
-  @Input() produto!: ProdutoData;
-  @Output() alterar = new EventEmitter<ProdutoData>();
+  produto = input.required<ProdutoData>();
+  alterar = output<ProdutoData>();
 
-  AlterarProduto() {
-    this.alterar.emit(this.produto);
+  alterarProduto() {
+    this.alterar.emit(this.produto());
   }
 }

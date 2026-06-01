@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ProdutoData } from '../../app.form';
 
@@ -10,10 +10,10 @@ import { ProdutoData } from '../../app.form';
   styleUrl: './deletar.css',
 })
 export class Deletar {
-  @Input() produto!: ProdutoData;
-  @Output() deletar = new EventEmitter<ProdutoData>();
+  produto = input.required<ProdutoData>();
+  deletar = output<ProdutoData>();
 
-  DeletarProduto() {
-    this.deletar.emit(this.produto);
+  deletarProduto() {
+    this.deletar.emit(this.produto());
   }
 }

@@ -1,5 +1,11 @@
 @layer components {
-  .form{
+    .button {
+        color: var(--color-azul);
+        /*hover: var(--color-marrom);*/
+        padding: --spacing(4);
+    }
+
+    .form{
         margin-bottom: 5%;
         padding: 1%;
         background: var(--color-offwhite);
