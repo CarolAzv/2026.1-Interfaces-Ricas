@@ -1,0 +1,28 @@
+ <table id="tabela-produtos" class="table-fixed">
+    <caption class="caption-top">Produtos Cadastrados</caption>
+    <thead>
+    <tr>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Em Produção</th>
+        <th>Alterar</th>
+        <th>Deletar</th>
+    </tr>
+    </thead>
+            
+    <tbody align="center">
+    @for (produto of produtos(); track produto.nome) {
+      <tr>
+        <td>{{ produto.nome }}</td>
+        <td>{{ produto.quantidade }}</td>
+        <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
+        <td>
+           <app-alterar [produto]="produto" (alterar)="AlterarProduto($event)"></app-alterar>
+        </td>
+        <td>
+            <app-deletar [produto]="produto" (deletar)="DeletarProduto($event)"></app-deletar>
+        </td>
+      </tr>
+    }
+    </tbody> 
+</table>

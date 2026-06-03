@@ -1,0 +1,48 @@
+<head>
+  <meta charset="utf-8" />
+  <title> Site De Compras</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+</head>
+
+<header class="header">
+  <div class="font-[imperial_script] text-5xl font-medium text-black"> <!-- class="title" -->
+    <h1>Site De Compras</h1>
+  </div>
+
+  <div class="nav">
+    <!-- Navigation links -->
+  </div>
+</header>
+
+<main class="main" >
+
+  <div class="content">
+
+    <div class="apresentacao font-[playfair] text-xl mt-[2%] mb-[3%]">
+      <h1>Você está no {{ local() }}</h1>
+    </div>
+
+    <div class="content-principal" align="center">
+
+      <app-incluir [produtos]="produtos"></app-incluir>
+
+      <div class="divider"></div>
+
+      <div id="principal-listagem">
+
+        <app-listar [produtos]="produtos"></app-listar>
+
+      </div>
+
+    </div>
+
+  </div>
+    
+</main>
+
+<footer>
+  <p>&copy; 2026 Compras. All rights reserved.</p>
+</footer>
+<router-outlet/>
