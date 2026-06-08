@@ -17,7 +17,7 @@
         <td>{{ produto.quantidade }}</td>
         <td>{{ produto.emProducao ? 'Sim' : 'Não' }}</td>
         <td>
-           <app-alterar [produto]="produto" (alterar)="AlterarProduto($event)"></app-alterar>
+           <app-alterar [produto]="produto"></app-alterar>
         </td>
         <td>
             <app-deletar [produto]="produto" (deletar)="DeletarProduto($event)"></app-deletar>
@@ -26,3 +26,57 @@
     }
     </tbody> 
 </table>
+
+@if (produtoEditando()) {
+  <div class="edicao-container mt-8 p-4 border rounded">
+    <h3 class="text-lg font-bold mb-4">Editando: {{ produtoEditando()?.nome }}</h3>
+    
+    <div class="form-group mb-4">
+      <label class="block mb-2">Nome do Produto:</label>
+      <input 
+        type="text" 
+        [ngModel]="ProdutoModel().nome" 
+        (ngModelChange)="ProdutoModel.set({...ProdutoModel(), nome: $event})"
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <div class="form-group mb-4">
+      <label class="block mb-2">Quantidade:</label>
+      <input 
+        type="number" 
+        [ngModel]="ProdutoModel().quantidade" 
+        (ngModelChange)="ProdutoModel.set({...ProdutoModel(), quantidade: $event})"
+        class="w-full p-2 border rounded"
+      />
+    </div>
+
+    <div class="form-group mb-4">
+      <label class="block">
+        <input 
+          type="checkbox" 
+          [ngModel]="ProdutoModel().emProducao" 
+          (ngModelChange)="ProdutoModel.set({...ProdutoModel(), emProducao: $event})"
+        />
+        Em Produção
+      </label>
+    </div>
+
+    <div class="buttons flex gap-2">
+      <button 
+        pButton 
+        type="button" 
+        label="Salvar" 
+        (click)="SalvarAlteracao()"
+        class="p-button-success"
+      ></button>
+      <button 
+        pButton 
+        type="button" 
+        label="Cancelar" 
+        (click)="CancelarEdicao()"
+        class="p-button-secondary"
+      ></button>
+    </div>
+  </div>
+}

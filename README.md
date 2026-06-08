@@ -10,6 +10,7 @@ rodando projeto
 
 ## Comandos PrimeNG
 instalar
+* npm install -g @angular/cli
 * npm install primeng @primeuix/themes
 
 https://github.com/iuricode/padroes-de-commits
