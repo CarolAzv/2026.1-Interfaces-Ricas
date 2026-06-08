@@ -11,8 +11,6 @@
         </div>
 
         <p-button type="submit" severity="info" label="{{ produtoEditando() ? 'Salvar' : 'Adicionar' }}" class="button" icon="pi pi-check" iconPos="right"></p-button>
-        @if (produtoEditando()) {
-        <p-button type="button" severity="info" (click)="CancelarEdicao()" label="Cancelar" class="button"></p-button>
-        }
+        <p-button *ngIf="produtoEditando()" type="button" severity="info" (click)="CancelarEdicao()" label="Cancelar" class="button"></p-button>
     </form>
 </div>

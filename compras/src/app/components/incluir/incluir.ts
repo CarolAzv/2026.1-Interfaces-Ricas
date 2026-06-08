@@ -1,4 +1,5 @@
 import { Component, Input, signal, Signal, WritableSignal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { form, required, min, FormField } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -10,7 +11,7 @@ import { ProdutoData, ProdutoModel } from '../../app.form';
 @Component({
   standalone: true,
   selector: 'app-incluir',
-  imports: [FormField, FormsModule, CheckboxModule, ButtonModule, InputTextModule],
+  imports: [NgIf, FormField, FormsModule, CheckboxModule, ButtonModule, InputTextModule],
   templateUrl: './incluir.html',
   styleUrl: './incluir.css',
 })

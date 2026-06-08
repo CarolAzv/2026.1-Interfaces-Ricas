@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, signal, WritableSignal } from '@angular/core';
+import { NgIf } from '@angular/common';
 import { form, required, min, FormField } from '@angular/forms/signals';
 import { FormsModule } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -10,14 +11,16 @@ import { ProdutoData, ProdutoModel } from '../../app.form';
 @Component({
   standalone: true,
   selector: 'app-alterar',
-  imports: [FormField, FormsModule, CheckboxModule, ButtonModule, InputTextModule],
+  imports: [NgIf, FormField, FormsModule, CheckboxModule, ButtonModule, InputTextModule],
   templateUrl: './alterar.html',
   styleUrl: './alterar.css',
 })
 export class Alterar implements OnInit {
   @Input() produtos!: WritableSignal<ProdutoData[]>;
   @Input() produtoSelecionado!: ProdutoData;
+  @Input() index!: number;
 
+  protected readonly editando = signal(false);
   protected readonly ProdutoModel = signal<ProdutoData>({ ...ProdutoModel });
   protected readonly ProdutoForm = form(this.ProdutoModel, (produto) => {
     required(produto.nome, { message: 'Um nome é necessário' });
@@ -25,8 +28,16 @@ export class Alterar implements OnInit {
   });
 
   ngOnInit() {
-    // Preenche o formulário com os dados do produto recebido via @Input
     this.ProdutoModel.set({ ...this.produtoSelecionado });
+  }
+
+  alternarEdicao() {
+    this.editando.update((atual) => !atual);
+    if (this.editando()) {
+      this.ProdutoModel.set({ ...this.produtoSelecionado });
+    } else {
+      this.Resetar();
+    }
   }
 
   AlterarProduto(event: Event) {
@@ -35,17 +46,17 @@ export class Alterar implements OnInit {
 
     const produtoAtualizado: ProdutoData = { ...this.ProdutoModel() };
 
-    this.produtos.set(
-      this.produtos().map((item) =>
-        item === this.produtoSelecionado ? produtoAtualizado : item
-      )
-    );
+    this.produtos.update((produtos) => {
+      const produtosAtualizados = [...produtos];
+      produtosAtualizados[this.index] = produtoAtualizado;
+      return produtosAtualizados;
+    });
 
+    this.editando.set(false);
     this.Resetar();
   }
 
   Resetar() {
-    // Restaura o formulário para os dados originais do produto
     this.ProdutoModel.set({ ...this.produtoSelecionado });
     this.ProdutoForm().reset();
   }

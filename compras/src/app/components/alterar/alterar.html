@@ -1,1 +1,38 @@
-<p-button (click)="alterarProduto()" label="Alterar" class="button"></p-button>
+<p-button *ngIf="!editando()" (click)="alternarEdicao()" label="Alterar" class="button"></p-button>
+<form *ngIf="editando()" (submit)="AlterarProduto($event)" class="edicao-form">
+  <div class="form-group mb-4">
+    <label class="block mb-2" for="nome">Nome do Produto:</label>
+    <input
+      pInputText
+      id="nome"
+      type="text"
+      [formField]="ProdutoForm.nome"
+      placeholder="Nome do produto"
+      class="w-full p-2 border rounded"
+    />
+  </div>
+
+  <div class="form-group mb-4">
+    <label class="block mb-2" for="quantidade">Quantidade:</label>
+    <input
+      pInputText
+      id="quantidade"
+      type="number"
+      [formField]="ProdutoForm.quantidade"
+      placeholder="Quantidade em estoque"
+      class="w-full p-2 border rounded"
+    />
+  </div>
+
+  <div class="form-group mb-4">
+    <div class="flex items-center gap-2">
+      <p-checkbox [binary]="true" id="emProducao" [formField]="ProdutoForm.emProducao"></p-checkbox>
+      <label for="emProducao">Em Produção</label>
+    </div>
+  </div>
+
+  <div class="buttons flex gap-2">
+    <button pButton type="submit" label="Salvar" class="p-button-success" [disabled]="!ProdutoForm().valid()"></button>
+    <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="alternarEdicao()"></button>
+  </div>
+</form>
